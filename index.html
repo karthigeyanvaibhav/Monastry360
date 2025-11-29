@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monastery360° – Digital Heritage of Sikkim</title>
+
+  <!-- Pannellum CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+ 
+  <style>
+    :root {
+      --cream: #F5EFE6;
+      --beige: #E8DFCA;
+      --blue: #6D94C5;
+      --bluegray: #CBDCEB;
+      --text: #333;
+      --darkblue: #3A5F8C;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Smooth scrolling */
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      background: url("Buddha.jpg") center/cover no-repeat;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: var(--blue);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      color: var(--blue);
+    }
+
+     nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      background: rgba(245, 239, 230, 0.95);
+      border-bottom: 2px solid var(--bluegray);
+    }
+
+    nav a, nav select {
+      text-decoration: none;
+      color: var(--cream);
+      font-weight: 500;
+      background: var(--blue);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav a:hover, nav select:hover { background: var(--bluegray); color: var(--blue); }
+    section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: var(--beige);
+      border-radius: 12px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: var(--beige);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--blue);
+    }
+
+    section p {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    iframe, img {
+      width: 100%;
+      border-radius: 8px;
+      border: none;
+    }
+
+    #panorama {
+      width: 100%;
+      height: 500px;
+      border-radius: 8px;
+      border: 3px solid var(--bluegray);
+    }
+
+  /* Style for the dropdown selection bar */
+  #monasterySelect {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 6px;
+    border: 1px solid var(--bluegray);
+    font-size: 1rem;
+    background: var(--cream);
+    color: var(--text);
+    box-sizing: border-box;
+  }
+
+  /* Hover effect */
+  #monasterySelect:hover {
+    border-color: var(--blue);       /* Darker green */
+    background-color: #ffffff;
+  }
+
+  /* Focus effect */
+  #monasterySelect:focus {
+    border-color: var(--beige);
+  }
+
+  /* Dropdown options */
+  #monasterySelect option {
+    padding: 12px;
+  }
+
+
+    /* Card style for cultural events */
+    .event-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .event-card {
+      background: var(--bluegray);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .event-card h3 {
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+
+    form input, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    form input {
+      background: var(--cream);
+      color: var(--text);
+      border: 1px solid var(--bluegray);
+    }
+
+    form button {
+      background: var(--blue);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: var(--bluegray);
+      color: var(--blue);
+    }
+
+    form select {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 6px;
+      border: 1px solid var(--bluegray);
+      font-size: 1rem;
+      background: var(--cream);
+      color: var(--text);
+      box-sizing: border-box;
+    }
+
+    .info-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--cream);
+      border: 2px solid var(--bluegray);
+      border-radius: 10px;
+      padding: 1.5rem;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      z-index: 1000;
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+      color: var(--blue);
+    }
+
+    .info-box button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background: var(--bluegray);
+      color: var(--text);
+      margin-top: 3rem;
+    }
+    .archive-carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 2px solid var(--bluegray);
+    background: var(--beige);
+    }
+
+    .carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+    }
+
+    .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-track img {
+    width: 100%;
+    flex-shrink: 0;
+    }
+
+    .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(109, 148, 197, 0.7);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 5;
+    border-radius: 50%;
+    transition: background 0.3s;
+    }
+
+    .carousel-btn:hover {
+    background-color: rgba(109, 148, 197, 0.9);
+    }
+
+    .carousel-btn.prev {
+    left: 10px;
+    }
+
+    .carousel-btn.next {
+    right: 10px;
+    }
+
+/* Monastery360 theme colors */
+
+.search-container {
+display: flex;
+justify-content: center;
+margin: 20px;
+}
+#searchInput {
+padding: 10px;
+width: 60%;
+border-radius: 12px;
+border: 1px solid #ccc;
+background-color: var(--cream);
+}
+button {
+margin-left: 10px;
+padding: 10px 18px;
+border-radius: 12px;
+border: none;
+background-color: var(--blue);
+color: white;
+cursor: pointer;
+}
+button:hover {
+background-color: #00335e;
+}
+.result-card {
+border: 1px solid #ddd;
+border-radius: 12px;
+padding: 16px;
+margin: 10px auto;
+width: 80%;
+background: var(--beige);
+box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.result-card h3 {
+margin: 0 0 8px;
+color: var(--blue);
+}
+   
+       /* CSS */
+:root {
+  --primary-color: var(--beige);  /* Minimal background color */
+  --text-color: var(--blue);     /* Text color */
+}
+
+#entrance-animation {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color); /* Minimal colored background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+}
+
+#entrance-animation h1 {
+  font-size: 3rem;
+  color: var(--text-color);
+  opacity: 0;
+  animation: fadeScale 2.5s ease forwards;
+}
+
+@keyframes fadeScale {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- HTML -->
+<div id="entrance-animation">
+  <h1>Monastery360°</h1>
+</div>
+
+<!-- Your main website content -->
+<div id="main-content" style="display:none;">
+  <!-- Your website content here -->
+</div>
+
+  <!-- Header -->
+  <header>
+    <h1 data-translate="title">Monastery360°</h1>
+    <p data-translate="subtitle">A Digital Heritage Platform for Sikkim’s Monasteries</p>
+  </header>
+
+   <nav>
+    <a href="#tours" data-translate="nav_tours">Tours</a>
+    <a href="#archives" data-translate="nav_archives">Archives</a>
+    <a href="#map" data-translate="nav_map">Map</a>
+    <a href="#calendar" data-translate="nav_calendar">Calendar</a>
+    <a href="#booking" data-translate="nav_booking">Booking</a>
+    <select id="languageSwitcher">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="ne">नेपाली</option>
+      <option value="ta">தமிழ்</option>
+    </select>
+  </nav>
+
+<!-- Results -->
+<div id="resultsContainer"></div>
+  
+  <!-- Virtual Tours -->
+  <section id="tours">
+    <h2 data-translate="tours_heading">Virtual Tours</h2>
+    <p data-translate="tours_text">Immerse yourself in 360° panoramic monastery views.</p>
+    <div id="panorama"></div>
+  </section>
+
+ <!-- Archives -->
+<section id="archives">
+  <h2 data-translate="archives_heading">Digital Archives</h2>
+  <p data-translate="archives_text">Explore digitized manuscripts, murals, and heritage documents.</p>
+
+  <div class="archive-carousel">
+    <button class="carousel-btn prev">&#10094;</button>
+    <div class="carousel-track-container">
+      <div class="carousel-track">
+        <img src="Rumtek_Monastery,_Sikkim.jpg" alt="Archive Image 1">
+        <img src="Pemayangtse_Monastery,_Sikkim.jpg" alt="Archive Image 2">
+        <img src="Tashiding_Monastery,_Sikkim.jpg" alt="Archive Image 3">
+        <img src="Enchey_Monastery,_Sikkim.jpg" alt="Archive Image 4">
+        <img src="mona_writes.jpg" alt="Archive Image 5">
+      </div>
+    </div>
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+</section>
+
+
+  <!-- Map -->
+  <section id="map">
+  <h2 data-translate="map_heading">Interactive Map</h2>
+  <p data-translate="map_text">Discover monastery locations and nearby attractions.</p>
+
+  <!-- Search Dropdown -->
+  <select id="monasterySelect">
+    <option value="">-- Select a Monastery --</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3545.785612903526!2d88.55894397528529!3d27.288591476425225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a30f1e34741b%3A0x317cb60253a00c9e!2sRumtek%20Monastery!5e0!3m2!1sen!2sin!4v1758602698499!5m2!1sen!2sin">Rumtek Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14181.256855981303!2d88.24341625240858!3d27.303353172660422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6842d294c8d71%3A0x5ff926244a424543!2sPemayangtse%20Monastery%2C%20Sikkim%20737111!5e0!3m2!1sen!2sin!4v1758602959604!5m2!1sen!2sin">Pemayangtse Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3544.2728586447856!2d88.616590975287!3d27.33593677639753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6ba848fe4b38f%3A0xf1c23957008e31e8!2sEnchey%20Monastery!5e0!3m2!1sen!2sin!4v1758603082079!5m2!1sen!2sin">Enchey Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3545.136037952739!2d88.29529967528603!3d27.30893077641326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e685fca06dc171%3A0x92150f5f129db887!2sTashiding%20Monastery!5e0!3m2!1sen!2sin!4v1758603205533!5m2!1sen!2sin">Tashiding Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3541.8095170721003!2d88.58124557528986!3d27.412871476352613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6bba53187e157%3A0xefa19c90b60b6591!2sPhodong%20Monastery!5e0!3m2!1sen!2sin!4v1758603308818!5m2!1sen!2sin">Phodong Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3541.5577657857784!2d88.60525868097585!3d27.420722915363132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6ba41484e83cf%3A0x1ae7c5a6a881d70e!2sPhensang%20Monastery!5e0!3m2!1sen!2sin!4v1758603453460!5m2!1sen!2sin">Phensang Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3543.2933391841443!2d88.22741727528812!3d27.366552876379643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e688bc40b54c35%3A0x9be6bac98c197ef0!2sDubdi%20Buddhist%20Monastery%20-%20Yuksom%2C%20West%20Sikkim%20District%2C%20Sikkim%2C%20India!5e0!3m2!1sen!2sin!4v1758603531541!5m2!1sen!2sin">Dubdi Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3544.5107510323105!2d88.33267277528671!3d27.32849637640179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e69ab876f2e433%3A0xe595a93fb0b1c33e!2sRalang%20New%20Monastery!5e0!3m2!1sen!2sin!4v1758603630564!5m2!1sen!2sin">Ralang Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3544.42445304861!2d88.5764637752868!3d27.331195676400156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a4ea90097ab7%3A0xe9dad44d6bbcc5ec!2sPal%20Karma%20Zurmang%20Shedup%20Chokhor%20Ling%20Lingdum%20Monastery%20(Ranka%20Monastery)!5e0!3m2!1sen!2sin!4v1758603725558!5m2!1sen!2sin">Lingdum Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3547.3101811966167!2d88.58543007528354!3d27.24079957645308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a7b8024d1677%3A0xd2b0be6addf3222e!2sKartok%20Monastery!5e0!3m2!1sen!2sin!4v1758603802500!5m2!1sen!2sin">Kartok Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3545.4931194677315!2d88.2191117752856!3d27.297751676419807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e686f3ff6fffe1%3A0x36e7637e5a978139!2sSanghak%20Choeling%20Monastery!5e0!3m2!1sen!2sin!4v1758603894999!5m2!1sen!2sin">Sanga Choeling Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9259758635826!2d88.7461803753!3d27.68868267619331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6cdcca88079ed%3A0xc2796957013b9372!2sLachung%20Monastery!5e0!3m2!1sen!2sin!4v1758604011928!5m2!1sen!2sin">Lachung Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0200674510706!2d88.55516417530102!3d27.71666667617722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6c4a7eaaaaaab%3A0x7e1f36bdcaee6181!2sLachen%20Monastery!5e0!3m2!1sen!2sin!4v1758604078830!5m2!1sen!2sin">Lachen Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3546.1031748021974!2d88.33180547528491!3d27.278642976430945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e69b47cdd1d795%3A0x592e5e0c06d6e848!2sBon%20Monastery!5e0!3m2!1sen!2sin!4v1758604140034!5m2!1sen!2sin">Bon Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.597756107595!2d88.45899847529807!3d27.63697197622296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6e9f511d70b3d%3A0x101fee9b533ac309!2sTholung%20Monastery!5e0!3m2!1sen!2sin!4v1758604202194!5m2!1sen!2sin">Tholung Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.7476942321837!2d88.45816227527615!3d27.03813747657257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e422681aee4119%3A0x69adb6ec45e0d69f!2sThe%20Zang%20Dhok%20Palri%20Monastery!5e0!3m2!1sen!2sin!4v1758604313770!5m2!1sen!2sin">Zang Dhok Monastery</option>
+    <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.4611088688202!2d88.36805287528107!3d27.173240676492927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e69d85089f9f27%3A0x760768dc782e46c3!2sNgadak%20Thupten%20Shedup%20Dhargey%20Choeling%2C%20Monastery!5e0!3m2!1sen!2sin!4v1758604389451!5m2!1sen!2sin">Ngadak Monastery</option>
+    <!-- Add more with their respective Google Maps embed URLs -->
+  </select>
+
+  <!-- Map container -->
+  <div id="mapContainer" style="position:relative; width:100%; height:500px; border:1px solid #ccc;">
+
+    <!-- Placeholder text -->
+    <div id="placeholder" 
+         style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+                font-size:18px; color:#555; text-align:center;">
+      Please select the monastery you want to visit
+    </div>
+
+  <!-- Map iframe -->
+
+  <iframe id="mapFrame" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+
+  <!-- Calendar -->
+<section id="calendar">
+  <h2 data-translate="calendar_heading">Cultural Calendar</h2>
+  <p data-translate="calendar_text">Stay updated with festivals, rituals, and monastery events.</p>
+  <div class="event-cards">
+    <div class="event-card" onclick="showFestivalInfo('losar')">
+      <h3 data-translate="losar_title">Losar Festival</h3>
+      <p data-translate="losar_date">Feb 21, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('sagadawa')">
+      <h3 data-translate="sagadawa_title">Saga Dawa</h3>
+      <p data-translate="sagadawa_date">June 5, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('drupka')">
+      <h3 data-translate="drupka_title">Drupka Teshi</h3>
+      <p data-translate="drupka_date">Aug 10, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('vesak')">
+      <h3 data-translate="vesak_title">Vesak (Buddha Purnima)</h3>
+      <p data-translate="vesak_date">May 12, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('magha')">
+      <h3 data-translate="magha_title">Magha Puja</h3>
+      <p data-translate="magha_date">March 14, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('asalha')">
+      <h3 data-translate="asalha_title">Asalha Puja (Dhamma Day)</h3>
+      <p data-translate="asalha_date">July 9, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('vassa')">
+      <h3 data-translate="vassa_title">Vassa (Rain Retreat Begins)</h3>
+      <p data-translate="vassa_date">July 10, 2026 – Oct 6, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('kathina')">
+      <h3 data-translate="kathina_title">Kathina Ceremony</h3>
+      <p data-translate="kathina_date">Oct 20, 2026</p>
+    </div>
+    <div class="event-card" onclick="showFestivalInfo('uposatha')">
+      <h3 data-translate="uposatha_title">Uposatha Days</h3>
+      <p data-translate="uposatha_date">Every Full Moon & New Moon</p>
+    </div>
+  </div>
+</section>
+
+<!-- Festival Info Box -->
+<div id="festival-info" class="info-box" style="display: none;">
+  <h3 id="festival-title"></h3>
+  <p id="festival-description"></p>
+  <button onclick="closeFestivalInfo()">Close</button>
+  <button id="book-festival-btn" onclick="bookFromPopup()" style="background: var(--blue); color: white; margin-top: 10px;">Book Now</button>
+</div>
+
+  <!-- Booking -->
+<section id="booking">
+  <h2 data-translate="booking_heading">Booking & Participation</h2>
+  <p data-translate="booking_text">Book guided tours and participate in monastery activities.</p>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <input type="date" id="event-date" required>
+      <!-- Monastery selection -->
+    <select id="monastery" name="monastery" required>
+      <option value="">Choose a Monastery</option>
+      <option>Rumtek Monastery</option>
+      <option>Pemayangtse Monastery</option>
+      <option>Tashiding Monastery</option>
+      <option>Enchey Monastery</option>
+      <option>Phodong Monastery</option>
+      <option>Phensang Monastery</option>
+      <option>Dubdi Monastery</option>
+      <option>Ralang Monastery</option>
+      <option>Lingdum (Ranka) Monastery</option>
+      <option>Kartok Monastery</option>
+      <option>Sanga Choeling Monastery</option>
+      <option>Lachung Monastery</option>
+      <option>Lachen Monastery</option>
+      <option>Bon Monastery</option>
+      <option>Tholung Monastery</option>
+      <option>Zang Dhok Palri Monastery</option>
+      <option>Ngadak Monastery</option>
+    </select>
+    <!-- New Dropdown for Specific Function -->
+    <select id="event-select" required>
+      <option value="" disabled selected>Select Function/Festival</option>
+      <option value="losar">Losar Festival</option>
+      <option value="sagadawa">Saga Dawa</option>
+      <option value="drupka">Drupka Teshi</option>
+      <option value="vesak">Vesak (Buddha Purnima)</option>
+      <option value="magha">Magha Puja</option>
+      <option value="asalha">Asalha Puja (Dhamma Day)</option>
+      <option value="vassa">Vassa (Rain Retreat)</option>
+      <option value="kathina">Kathina Ceremony</option>
+      <option value="uposatha">Uposatha Days</option>
+    </select>
+
+    <button type="submit">Book Now</button>
+  </form>
+  </section>
+  <!-- Guided Tours Booking -->
+  <section id="tour-booking">
+    <h2 data-translate="tour_booking_heading">Guided Tours Booking</h2>
+    <p></p>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+
+      <!-- Monastery selection -->
+      <select id="tour-monastery" name="monastery" required>
+        <option value="">Choose a Monastery</option>
+        <option>Rumtek Monastery</option>
+        <option>Pemayangtse Monastery</option>
+        <option>Tashiding Monastery</option>
+        <option>Enchey Monastery</option>
+        <option>Phodong Monastery</option>
+        <option>Phensang Monastery</option>
+        <option>Dubdi Monastery</option>
+        <option>Ralang Monastery</option>
+        <option>Lingdum (Ranka) Monastery</option>
+        <option>Kartok Monastery</option>
+        <option>Sanga Choeling Monastery</option>
+        <option>Lachung Monastery</option>
+        <option>Lachen Monastery</option>
+        <option>Bon Monastery</option>
+        <option>Tholung Monastery</option>
+        <option>Zang Dhok Palri Monastery</option>
+        <option>Ngadak Monastery</option>
+      </select>
+
+      <input type="date" id="tour-start" min="2026-01-01" required>
+
+      <button type="submit">Book Tour</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p data-translate="footer">&copy; 2025 Monastery360° | Preserving Sikkim’s Heritage</p>
+  </footer>
+
+  <!-- Pannellum JS -->
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  <script>
+   pannellum.viewer('panorama', {
+  "type": "equirectangular",
+  "panorama": "https://upload.wikimedia.org/wikipedia/commons/d/df/Hemis_Monastery_360_Degree_View.jpg",
+  "autoLoad": true,
+  "title": "Buddhist Monastery Virtual Tour",
+  "author": "Wikimedia Commons",
+  
+  // Interaction settings
+  "hfov": 110,           // default field of view
+  "minHfov": 50,         // max zoom-in
+  "maxHfov": 120,        // max zoom-out
+  "pitch": 0,            // vertical angle
+  "yaw": 0,              // horizontal angle
+  "autoRotate": -2,      // slowly auto-rotate panorama
+  "compass": false,
+  "mouseZoom": true      // allow mouse scroll zoom
+});
+
+  </script>
+
+<!-- Include the JS at the end of body -->
+  <script>
+   // Hide animation after 3s and show main content
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('entrance-animation').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+  }, 3000); // Duration matches CSS animation
+});
+  </script>
+
+  <!-- Carousal script-->
+  <script>
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const prevButton = document.querySelector('.carousel-btn.prev');
+const nextButton = document.querySelector('.carousel-btn.next');
+
+let currentIndex = 0;
+const slideWidth = slides[0].getBoundingClientRect().width;
+
+// Position slides next to each other
+slides.forEach((slide, index) => {
+  slide.style.left = slideWidth * index + 'px';
+});
+
+function moveToSlide(index) {
+  track.style.transform = 'translateX(-' + slides[index].style.left + ')';
+}
+
+// Next button
+nextButton.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  moveToSlide(currentIndex);
+});
+
+// Prev button
+prevButton.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  moveToSlide(currentIndex);
+});
+
+// Optional: make carousel responsive
+window.addEventListener('resize', () => {
+  const newSlideWidth = slides[0].getBoundingClientRect().width;
+  slides.forEach((slide, index) => {
+    slide.style.left = newSlideWidth * index + 'px';
+  });
+  moveToSlide(currentIndex);
+});
+
+// ---------------------------
+// AUTO SLIDE
+// ---------------------------
+let autoSlideInterval = setInterval(() => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  moveToSlide(currentIndex);
+}, 4000); // Change slide every 4 seconds
+
+// Pause auto-slide on hover
+track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+track.addEventListener('mouseleave', () => {
+  autoSlideInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    moveToSlide(currentIndex);
+  }, 4000);
+});
+
+</script>
+
+<script>
+  const select = document.getElementById("monasterySelect");
+  const iframe = document.getElementById("mapFrame");
+  const placeholder = document.getElementById("placeholder");
+
+  select.addEventListener("change", () => {
+   if (select.value) {
+    iframe.src = select.value;
+    placeholder.style.display = "none"; // Hide placeholder when a monastery is selected
+   } else {
+    placeholder.style.display = "block"; // Show placeholder if selection is reset
+   }
+  });
+</script>
+
+<script>
+
+// Translation for UI elements
+const uiTranslations = {
+  en: { 
+    select_monastery: "Select Monastery:", 
+    select_date: "Select Date:", 
+    select_option: "--Select--", 
+    book_now: "Book Now", 
+    close: "Close", 
+    bookingSuccess: "Booking successful!", 
+    festival: "Festival", 
+    monastery: "Monastery", 
+    date: "Date",
+    select_all_fields: "Please select a monastery and date."
+  },
+  hi: { 
+    select_monastery: "मठ चुनें:", 
+    select_date: "तारीख चुनें:", 
+    select_option: "--चुनें--", 
+    book_now: "अभी बुक करें", 
+    close: "बंद करें", 
+    bookingSuccess: "बुकिंग सफल!", 
+    festival: "त्योहार", 
+    monastery: "मठ", 
+    date: "तारीख",
+    select_all_fields: "कृपया मठ और तारीख चुनें।"
+  },
+  ne: { 
+    select_monastery: "गुम्बा छनौट गर्नुहोस्:", 
+    select_date: "मिति चयन गर्नुहोस्:", 
+    select_option: "--छान्नुहोस्--", 
+    book_now: "अहिले बुक गर्नुहोस्", 
+    close: "बन्द गर्नुहोस्", 
+    bookingSuccess: "बुकिङ सफल भयो!", 
+    festival: "पर्व", 
+    monastery: "गुम्बा", 
+    date: "मिति",
+    select_all_fields: "कृपया गुम्बा र मिति चयन गर्नुहोस्।"
+  },
+  ta: { 
+    select_monastery: "குகையை தேர்ந்தெடுக்கவும்:", 
+    select_date: "தேதி தேர்ந்தெடுக்கவும்:", 
+    select_option: "--தேர்வு செய்யவும்--", 
+    book_now: "இப்போது முன்பதிவு செய்யவும்", 
+    close: "மூடு", 
+    bookingSuccess: "முன்பதிவு வெற்றி!", 
+    festival: "திருவிழா", 
+    monastery: "குகை", 
+    date: "தேதி",
+    select_all_fields: "தயவுசெய்து குகை மற்றும் தேதியை தேர்வு செய்யவும்."
+  }
+};
+
+
+const festivalData = {
+  en: {
+    vesak: { 
+      title: "Vesak (Buddha Purnima)", 
+      description: "Celebrates the birth, enlightenment, and death of Buddha. It’s the most sacred festival in Buddhism.", 
+      date: "2026-05-12" 
+    },
+    magha: { 
+      title: "Magha Puja", 
+      description: "Commemorates a gathering of 1,250 enlightened monks who listened to Buddha’s teachings without prior summons.", 
+      date: "2026-03-14" 
+    },
+    asalha: { 
+      title: "Asalha Puja (Dhamma Day)", 
+      description: "Marks Buddha’s first sermon after enlightenment, where he taught the Four Noble Truths.", 
+      date: "2026-07-09" 
+    },
+    vassa: { 
+      title: "Vassa (Rain Retreat)", 
+      description: "A three-month retreat during the monsoon season when monks stay in monasteries for meditation and study.", 
+      minDate: "2026-07-10", 
+      maxDate: "2026-10-06" 
+    },
+    kathina: { 
+      title: "Kathina Ceremony", 
+      description: "Celebrated after Vassa, when laypeople offer robes and other necessities to monks.", 
+      date: "2026-10-20" 
+    },
+    uposatha: { 
+      title: "Uposatha Days", 
+      description: "Observed twice a month for cleansing the mind and renewing commitment to the Buddhist path.", 
+      allowedDates: ["2026-01-01","2026-01-15","2026-02-01","2026-02-15","2026-03-02","2026-03-17","2026-04-01","2026-04-16","2026-05-01","2026-05-16","2026-06-01","2026-06-16","2026-07-01","2026-07-16","2026-08-01","2026-08-16","2026-09-01","2026-09-16","2026-10-01","2026-10-16","2026-11-01","2026-11-16","2026-12-01","2026-12-16"]
+    },
+    losar: { 
+      title: "Losar Festival", 
+      description: "Tibetan New Year festival celebrated with prayers, dances, and traditional rituals.", 
+      date: "2026-02-21" 
+    },
+    sagadawa: { 
+      title: "Saga Dawa", 
+      description: "Celebrates Buddha’s birth, enlightenment, and Parinirvana.", 
+      date: "2026-06-05" 
+    },
+    drupka: { 
+      title: "Drupka Teshi", 
+      description: "Commemorates the day Buddha performed his first miracle at Shravasti.", 
+      date: "2026-08-10" 
+    }
+  },
+  hi: {
+    vesak: { 
+      title: "वेसाक (बुद्ध पूर्णिमा)", 
+      description: "यह बुद्ध के जन्म, ज्ञान प्राप्ति और महापरिनिर्वाण का उत्सव है। यह बौद्ध धर्म का सबसे पवित्र पर्व माना जाता है।", 
+      date: "2026-05-12" 
+    },
+    magha: { 
+      title: "माघ पूजा", 
+      description: "1250 भिक्षुओं की ऐतिहासिक सभा का स्मरण, जिन्होंने बिना बुलावे बुद्ध के उपदेश सुने।", 
+      date: "2026-03-14" 
+    },
+    asalha: { 
+      title: "आषाढ़ पूजा (धम्म दिवस)", 
+      description: "यह बुद्ध के प्रथम उपदेश को स्मरण करता है, जिसमें उन्होंने चार आर्य सत्य बताए।", 
+      date: "2026-07-09" 
+    },
+    vassa: { 
+      title: "वर्षा वास", 
+      description: "तीन महीने का वर्षा ऋतु का व्रत, जिसमें भिक्षु मठों में रहकर ध्यान और अध्ययन करते हैं।", 
+      minDate: "2026-07-10", 
+      maxDate: "2026-10-06" 
+    },
+    kathina: { 
+      title: "कठिना समारोह", 
+      description: "वर्षा वास के बाद मनाया जाता है, जब गृहस्थ लोग भिक्षुओं को वस्त्र और आवश्यक सामग्री अर्पित करते हैं।", 
+      date: "2026-10-20" 
+    },
+    uposatha: { 
+      title: "उपोसथ दिवस", 
+      description: "महीने में दो बार मन का शुद्धिकरण और बौद्ध मार्ग के प्रति नवीनीकरण के लिए मनाया जाता है।", 
+      allowedDates: ["2026-01-01","2026-01-15","2026-02-01","2026-02-15","2026-03-02","2026-03-17","2026-04-01","2026-04-16","2026-05-01","2026-05-16","2026-06-01","2026-06-16","2026-07-01","2026-07-16","2026-08-01","2026-08-16","2026-09-01","2026-09-16","2026-10-01","2026-10-16","2026-11-01","2026-11-16","2026-12-01","2026-12-16"]
+    },
+    losar: { 
+      title: "लोसर उत्सव", 
+      description: "तिब्बती नववर्ष उत्सव, जो प्रार्थनाओं, नृत्यों और पारंपरिक अनुष्ठानों के साथ मनाया जाता है।", 
+      date: "2026-02-21" 
+    },
+    sagadawa: { 
+      title: "सागा दावा", 
+      description: "बुद्ध के जन्म, ज्ञान प्राप्ति और महापरिनिर्वाण का उत्सव।", 
+      date: "2026-06-05" 
+    },
+    drupka: { 
+      title: "द्रुपका तेशी", 
+      description: "वह दिन स्मरण करता है जब बुद्ध ने श्रावस्ती में अपना पहला चमत्कार दिखाया।", 
+      date: "2026-08-10" 
+    }
+  },
+  ne: {
+    vesak: { 
+      title: "वेसाक (बुद्ध पूर्णिमा)", 
+      description: "बुद्धको जन्म, ज्ञानप्राप्ति र महापरिनिर्वाणलाई स्मरण गर्ने पर्व। यो बौद्ध धर्मको सबैभन्दा पवित्र पर्व हो।", 
+      date: "2026-05-12" 
+    },
+    magha: { 
+      title: "माघ पूजा", 
+      description: "१२५० आरहन्त भिक्षुहरूको ऐतिहासिक भेला, जसले कुनै निमन्त्रणा बिना बुद्धका उपदेश सुने, त्यसको स्मरण।", 
+      date: "2026-03-14" 
+    },
+    asalha: { 
+      title: "आषाढ पूजा (धम्म दिवस)", 
+      description: "बुद्धले ज्ञान प्राप्ति पछि पहिलो पटक चार आर्य सत्यको उपदेश दिनुभएको दिनको स्मरण।", 
+      date: "2026-07-09" 
+    },
+    vassa: { 
+      title: "वास्सा (वर्षा वास)", 
+      description: "तीन महिनाको वर्षायाम व्रत, जसमा भिक्षुहरूले गुम्बामा बस्दै ध्यान र अध्ययन गर्छन्।", 
+      minDate: "2026-07-10", 
+      maxDate: "2026-10-06" 
+    },
+    kathina: { 
+      title: "कठिना समारोह", 
+      description: "वास्सा पछि मनाइने पर्व, जहाँ गृहनाथहरूले भिक्षुहरूलाई वस्त्र र आवश्यक सामग्री अर्पण गर्छन्।", 
+      date: "2026-10-20" 
+    },
+    uposatha: { 
+      title: "उपोशथ दिवस", 
+      description: "महिनामा दुई पटक मन शुद्धीकरण र बौद्ध मार्गप्रति नवीनीकरणको लागि मनाइन्छ।", 
+      allowedDates: ["2026-01-01","2026-01-15","2026-02-01","2026-02-15","2026-03-02","2026-03-17","2026-04-01","2026-04-16","2026-05-01","2026-05-16","2026-06-01","2026-06-16","2026-07-01","2026-07-16","2026-08-01","2026-08-16","2026-09-01","2026-09-16","2026-10-01","2026-10-16","2026-11-01","2026-11-16","2026-12-01","2026-12-16"]
+    },
+    losar: { 
+      title: "लोसर पर्व", 
+      description: "तिब्बती नयाँ वर्ष पर्व, प्रार्थना, नृत्य र परम्परागत अनुष्ठानहरूसँग मनाइन्छ।", 
+      date: "2026-02-21" 
+    },
+    sagadawa: { 
+      title: "सागा दावा", 
+      description: "बुद्धको जन्म, ज्ञानप्राप्ति र महापरिनिर्वाणलाई स्मरण गर्ने पर्व।", 
+      date: "2026-06-05" 
+    },
+    drupka: { 
+      title: "द्रुपका तेशी", 
+      description: "बुद्धले श्रावस्तीमा पहिलो चमत्कार देखाउनुभएको दिनको स्मरण।", 
+      date: "2026-08-10" 
+    }
+  },
+  ta: {
+    vesak: { 
+      title: "வெசாக் (புத்த பௌர்ணமி)", 
+      description: "புத்தரின் பிறப்பு, ஞானோதயம் மற்றும் பரிநிர்வாணத்தை நினைவுகூரும் திருவிழா. இது புத்தமதத்தின் மிகப் புனிதமான பண்டிகை.", 
+      date: "2026-05-12" 
+    },
+    magha: { 
+      title: "மகா பூஜை", 
+      description: "1,250 தேர்ந்த பிக்குகள் எந்த அழைப்பும் இன்றி புத்தரின் போதனையை கேட்ட அந்த வரலாற்று நாளை நினைவுகூருகிறது.", 
+      date: "2026-03-14" 
+    },
+    asalha: { 
+      title: "ஆசாலா பூஜை (தம்ம தினம்)", 
+      description: "ஞானோதயத்திற்குப் பிறகு புத்தர் வழங்கிய முதல் போதனை — நான்கு அரிய சத்தியங்களை எடுத்துரைத்த நாள்.", 
+      date: "2026-07-09" 
+    },
+    vassa: { 
+      title: "வஸ்ஸா (மழைக்கால வாஸம்)", 
+      description: "மூன்று மாத மழைக்காலத்தில் பிக்குகள் குகைகளில் தங்கி தியானம் மற்றும் பயில்வது.", 
+      minDate: "2026-07-10", 
+      maxDate: "2026-10-06" 
+    },
+    kathina: { 
+      title: "கதினா விழா", 
+      description: "வஸ்ஸா முடிந்த பின், பிக்குகளுக்கு புடவை மற்றும் தேவையான பொருட்கள் வழங்கப்படும் நாள்.", 
+      date: "2026-10-20" 
+    },
+    uposatha: { 
+      title: "உபோசத தினங்கள்", 
+      description: "ஒவ்வொரு மாதமும் இருமுறை — மனதை சுத்திகரித்து புத்தமத பாதையில் உறுதிப்படுத்தும் நாள்.", 
+      allowedDates: ["2026-01-01","2026-01-15","2026-02-01","2026-02-15","2026-03-02","2026-03-17","2026-04-01","2026-04-16","2026-05-01","2026-05-16","2026-06-01","2026-06-16","2026-07-01","2026-07-16","2026-08-01","2026-08-16","2026-09-01","2026-09-16","2026-10-01","2026-10-16","2026-11-01","2026-11-16","2026-12-01","2026-12-16"]
+    },
+    losar: { 
+      title: "லோசார் திருவிழா", 
+      description: "திபெத்திய புத்தாண்டு திருவிழா — பிரார்த்தனை, நடனம் மற்றும் பாரம்பரிய சடங்குகளுடன் கொண்டாடப்படுகிறது.", 
+      date: "2026-02-21" 
+    },
+    sagadawa: { 
+      title: "சாகா டாவா", 
+      description: "புத்தரின் பிறப்பு, ஞானோதயம் மற்றும் பரிநிர்வாணத்தை நினைவுகூரும் நாள்.", 
+      date: "2026-06-05" 
+    },
+    drupka: { 
+      title: "த்ருப்கா தேஷி", 
+      description: "புத்தர் ஸ்ராவஸ்தியில் முதல் அற்புதத்தை நிகழ்த்திய நாளை நினைவுகூரும் விழா.", 
+      date: "2026-08-10" 
+    }
+  }
+};
+
+
+// Show festival info popup
+const languageSwitcher = document.getElementById('languageSwitcher');
+let currentLanguage = languageSwitcher ? languageSwitcher.value : 'en';
+
+// helper: apply existing translations for all elements that use data-translate
+function applyTranslations(lang) {
+  if (!window.translations || !translations[lang]) return;
+  document.querySelectorAll('[data-translate]').forEach(el => {
+    const key = el.getAttribute('data-translate');
+    if (key && translations[lang][key] !== undefined) {
+      el.textContent = translations[lang][key];
+    }
+  });
+}
+
+// initial translations for page
+applyTranslations(currentLanguage);
+
+// re-apply translations when language changes and update popup content if open
+if (languageSwitcher) {
+  languageSwitcher.addEventListener('change', (e) => {
+    currentLanguage = e.target.value;
+    applyTranslations(currentLanguage);
+
+    // if popup currently open, re-render it in the new language
+    const infoBox = document.getElementById('festival-info');
+    if (infoBox && infoBox.style.display !== 'none' && infoBox.dataset.current) {
+      // re-render the same festival key in the new language
+      showFestivalInfo(infoBox.dataset.current);
+    }
+  });
+}
+
+/* 
+  showFestivalInfo: language-aware rendering.
+  Works with:
+    - festivalData = { en: {...}, hi: {...}, ... } (preferred)
+    - or a single-language 'festivals' object (fallback)
+*/
+function showFestivalInfo(key) {
+  const fest = festivalData[currentLanguage][key] || festivalData.en[key];
+  if (!fest) return;
+
+  document.getElementById("festival-title").innerText = fest.title;
+  document.getElementById("festival-description").innerText = fest.description;
+
+  const infoBox = document.getElementById("festival-info");
+  infoBox.style.display = "block";
+  infoBox.dataset.current = key;
+
+  // Translate buttons inside popup
+  infoBox.querySelectorAll("[data-translate]").forEach(el => {
+    const trKey = el.getAttribute("data-translate");
+    if (uiTranslations[currentLanguage][trKey]) {
+      el.innerText = uiTranslations[currentLanguage][trKey];
+    }
+  });
+
+  // Translate fixed buttons
+  const closeBtn = infoBox.querySelector("button:nth-of-type(1)");
+  const bookBtn  = infoBox.querySelector("button:nth-of-type(2)");
+  if (closeBtn) closeBtn.innerText = uiTranslations[currentLanguage].close;
+  if (bookBtn)  bookBtn.innerText  = uiTranslations[currentLanguage].book_now;
+}
+
+// close popup (keeps id festival-info)
+function closeFestivalInfo() {
+  const infoBox = document.getElementById('festival-info');
+  if (infoBox) infoBox.style.display = 'none';
+}
+
+/* Auto-fill booking form when user clicks "Book Now" in popup.
+   Uses festivalData/currentLanguage if present, otherwise falls back.
+*/
+function bookFromPopup() {
+  const infoBox = document.getElementById('festival-info');
+  if (!infoBox || !infoBox.dataset.current) return;
+
+  const key = infoBox.dataset.current;
+  let fest = null;
+  if (festivalData[currentLanguage] && festivalData[currentLanguage][key]) {
+    fest = festivalData[currentLanguage][key];
+  } else if (festivalData.en && festivalData.en[key]) {
+    fest = festivalData.en[key];
+  }
+
+  // Set the event select dropdown to the selected festival
+  const eventSelect = document.getElementById('event-select');
+  if (eventSelect && fest) {
+    const opt = Array.from(eventSelect.options).find(
+      o => o.value === key || o.text.toLowerCase().includes((fest.title || '').toLowerCase())
+    );
+    if (opt) eventSelect.value = opt.value;
+  }
+
+  // Set the date input to the festival date (if available)
+  const dateInput = document.getElementById('event-date');
+  if (dateInput && fest) {
+    if (fest.date) {
+      dateInput.value = fest.date;
+      dateInput.min = '';
+      dateInput.max = '';
+      dateInput.onchange = null;
+    } else if (fest.minDate && fest.maxDate) {
+      dateInput.value = fest.minDate;
+      dateInput.min = fest.minDate;
+      dateInput.max = fest.maxDate;
+      dateInput.onchange = null;
+    } else if (Array.isArray(fest.allowedDates)) {
+      dateInput.value = fest.allowedDates[0] || '';
+      dateInput.min = fest.allowedDates[0] || '';
+      dateInput.max = fest.allowedDates[fest.allowedDates.length - 1] || '';
+      dateInput.onchange = function () {
+        if (!fest.allowedDates.includes(this.value)) {
+          alert('Please select a valid date for this event.');
+          this.value = '';
+        }
+      };
+    } else {
+      dateInput.value = '';
+      dateInput.min = '';
+      dateInput.max = '';
+      dateInput.onchange = null;
+    }
+  }
+
+  // Scroll to booking section
+  const booking = document.getElementById('booking');
+  if (booking) booking.scrollIntoView({ behavior: 'smooth' });
+
+  // Close popup
+  closeFestivalInfo();
+}
+
+
+
+// Close popup
+// Close festival info popup
+function closeFestivalInfo() {
+  document.getElementById("festival-info").style.display = "none";
+}
+
+// Reference to the date input
+const dateInput = document.getElementById("event-date");
+
+// Set calendar to start from Jan 1, 2026 by default
+dateInput.min = "2026-01-01";
+dateInput.max = "2026-12-31";
+if (!dateInput.value) dateInput.value = "2026-01-01";
+
+// Event listener for festival selection
+document.getElementById("event-select").addEventListener("change", function() {
+  const key = this.value;
+  const fest = festivalData[currentLanguage][key] || festivalData.en[key];
+
+  if (!fest) return;
+
+  // If festival has a single date
+  if (fest.date) { 
+    dateInput.value = fest.date;
+    dateInput.min = "2026-01-01"; 
+    dateInput.max = "2026-12-31";
+    dateInput.onchange = null;
+
+  // If festival has a range of dates
+  } else if (fest.minDate && fest.maxDate) { 
+    dateInput.value = fest.minDate;
+    dateInput.min = fest.minDate;
+    dateInput.max = fest.maxDate;
+    dateInput.onchange = null;
+
+  // Special case: Uposatha dates
+  } else if (key === "uposatha") {
+    const uposathaDates2026 = [
+      "2026-01-02","2026-01-17",
+      "2026-02-01","2026-02-16",
+      "2026-03-03","2026-03-18",
+      "2026-04-01","2026-04-16",
+      "2026-05-01","2026-05-16",
+      "2026-06-01","2026-06-16",
+      "2026-07-01","2026-07-16",
+      "2026-08-01","2026-08-16",
+      "2026-09-01","2026-09-16",
+      "2026-10-01","2026-10-16",
+      "2026-11-01","2026-11-16",
+      "2026-12-01","2026-12-16"
+    ];
+
+    dateInput.value = uposathaDates2026[0];
+    dateInput.min = "2026-01-01";
+    dateInput.max = "2026-12-31";
+    dateInput.onchange = function() {
+      if (!uposathaDates2026.includes(this.value)) {
+        alert("Please select a valid Uposatha date.");
+        this.value = "";
+      }
+    }
+
+  // If festival has an array of allowed dates
+  } else if (Array.isArray(fest.allowedDates)) {
+    dateInput.value = fest.allowedDates[0];
+    dateInput.min = fest.allowedDates[0];
+    dateInput.max = fest.allowedDates[fest.allowedDates.length-1];
+    dateInput.onchange = function() {
+      if (!fest.allowedDates.includes(this.value)) {
+        alert("Please select a valid date for this event.");
+        this.value = "";
+      }
+    }
+
+  // Default: clear input
+  } else {
+    dateInput.value = "2026-01-01";
+    dateInput.min = "2026-01-01";
+    dateInput.max = "2026-12-31";
+    dateInput.onchange = null;
+  }
+});
+
+</script>
+<script>
+  const tourDateInput = document.getElementById("tour-start");
+
+  // Optional: Ensure user cannot select a date before 1st Jan 2026
+  tourDateInput.addEventListener("change", () => {
+    const selectedDate = tourDateInput.value;
+    const minDate = "2026-01-01";
+
+    if (selectedDate < minDate) {
+      alert("Please select a date on or after 1st Jan 2026.");
+      tourDateInput.value = minDate;
+    }
+  });
+</script>
+
+<script>
+  function bookFestival() {
+    const festivalTitle = document.getElementById("festival-title").innerText;
+    
+    // Scroll to booking section
+    document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+
+    // Select the festival in the dropdown
+    const dropdown = document.querySelector("#booking select");
+    for (let option of dropdown.options) {
+      if (option.text.includes(festivalTitle)) {
+        option.selected = true;
+        break;
+      }
+    }
+
+    // Close the popup
+    closeFestivalInfo();
+  }
+</script>
+
+<!-- Translation Script -->
+  <script>
+    const translations = {
+   en: {
+      title: "Monastery360°",
+      subtitle: "A Digital Heritage Platform for Sikkim’s Monasteries",
+      nav_tours: "Tours",
+      nav_archives: "Archives",
+      nav_map: "Map",
+      nav_calendar: "Calendar",
+      nav_booking: "Booking",
+      tours_heading: "Virtual Tours",
+      tours_text: "Immerse yourself in 360° panoramic monastery views.",
+      archives_heading: "Digital Archives",
+      archives_text: "Explore digitized manuscripts, murals, and heritage documents.",
+      map_heading: "Interactive Map",
+      map_text: "Discover monastery locations and nearby attractions.",
+      calendar_heading: "Cultural Calendar",
+      calendar_text: "Stay updated with festivals, rituals, and monastery events.",
+      losar_title: "Losar Festival",
+      losar_date: "Feb 21, 2026",
+      sagadawa_title: "Saga Dawa",
+      sagadawa_date: "June 5, 2026",
+      drupka_title: "Drupka Teshi",
+      drupka_date: "Aug 10, 2025",
+      vesak_title: "Vesak (Buddha Purnima)",
+      vesak_date: "May 12, 2026",
+      magha_title: "Magha Puja",
+      magha_date: "March 14, 2026",
+      asalha_title: "Asalha Puja (Dhamma Day)",
+      asalha_date: "July 9, 2026",
+      vassa_title: "Vassa (Rain Retreat Begins)",
+      vassa_date: "July 10, 2026 – Oct 6, 2026",
+      kathina_title: "Kathina Ceremony",
+      kathina_date: "Oct 20, 2026",
+      uposatha_title: "Uposatha Days",
+      uposatha_date: "Every Full Moon & New Moon",
+      booking_heading: "Booking & Participation",
+      booking_text: "Book guided tours and participate in monastery activities.",
+      popup_title: "Event Information",
+      popup_description: "Learn about this festival and why it is celebrated.",
+      booking_form_title: "Event Booking",
+      booking_name: "Name",
+      booking_email: "Email",
+      booking_date: "Select Date",
+      booking_monastery: "Select Monastery",
+      tour_booking_heading: "Guided Tour Booking",
+      tour_start: "Start Date",
+      tour_end: "End Date",
+      tour_monastery: "Choose a Monastery",
+      book_now: "Book Now",
+      footer: "© 2025 Monastery360° | Preserving Sikkim’s Heritage"
+    },
+    hi: {
+      title: "मोनास्ट्री360°",
+      subtitle: "सिक्किम के मठों की डिजिटल धरोहर मंच",
+      nav_tours: "दौरे",
+      nav_archives: "अभिलेखागार",
+      nav_map: "मानचित्र",
+      nav_calendar: "कैलेंडर",
+      nav_booking: "बुकिंग",
+      tours_heading: "वर्चुअल टूर",
+      tours_text: "360° पैनोरमिक दृश्य में खुद को डुबोएं।",
+      archives_heading: "डिजिटल अभिलेखागार",
+      archives_text: "पांडुलिपियों, भित्तिचित्रों और धरोहर दस्तावेज़ों का अन्वेषण करें।",
+      map_heading: "इंटरएक्टिव मानचित्र",
+      map_text: "मठों के स्थान और पास के आकर्षण खोजें।",
+      calendar_heading: "सांस्कृतिक कैलेंडर",
+      calendar_text: "त्योहारों, अनुष्ठानों और मठ आयोजनों से अपडेट रहें।",
+      losar_title: "लोसर उत्सव",
+      losar_date: "21 फ़रवरी, 2026",
+      sagadawa_title: "सागा दावा",
+      sagadawa_date: "5 जून, 2026",
+      drupka_title: "द्रुपका तेशी",
+      drupka_date: "10 अगस्त, 2026",
+      vesak_title: "वेसाक (बुद्ध पूर्णिमा)",
+      vesak_date: "12 मई, 2026",
+      magha_title: "माघ पूजा",
+      magha_date: "14 मार्च, 2026",
+      asalha_title: "आषाढ़ पूजा (धम्म दिवस)",
+      asalha_date: "9 जुलाई, 2026",
+      vassa_title: "वर्षा वास (आरंभ)",
+      vassa_date: "10 जुलाई – 6 अक्टूबर, 2026",
+      kathina_title: "कठिना समारोह",
+      kathina_date: "20 अक्टूबर, 2026",
+      uposatha_title: "उपोसथ दिवस",
+      uposatha_date: "हर पूर्णिमा और अमावस्या",
+      booking_heading: "बुकिंग और सहभागिता",
+      booking_text: "निर्देशित टूर बुक करें और मठ गतिविधियों में भाग लें।",
+      popup_title: "कार्यक्रम की जानकारी",
+      popup_description: "इस पर्व और इसके महत्व के बारे में जानें।",
+      booking_form_title: "कार्यक्रम बुकिंग",
+      booking_name: "नाम",
+      booking_email: "ईमेल",
+      booking_date: "तारीख चुनें",
+      booking_monastery: "मठ चुनें",
+      tour_booking_heading: "निर्देशित टूर बुकिंग",
+      tour_start: "आरंभ तिथि",
+      tour_end: "समाप्ति तिथि",
+      tour_monastery: "मठ चुनें",
+      book_now: "अभी बुक करें",
+      footer: "© 2025 मोनास्ट्री360° | सिक्किम की धरोहर संरक्षित कर रहे हैं"
+    },
+    ne: {
+      title: "मोनास्ट्री360°",
+      subtitle: "सिक्किमका गुम्बाहरूको डिजिटल सम्पदा प्लेटफर्म",
+      nav_tours: "भ्रमण",
+      nav_archives: "संग्रह",
+      nav_map: "नक्सा",
+      nav_calendar: "पात्रो",
+      nav_booking: "बुकिङ",
+      tours_heading: "भर्चुअल भ्रमण",
+      tours_text: "३६०° पानोरामिक दृश्यमा आफैलाई डुबाउनुहोस्।",
+      archives_heading: "डिजिटल संग्रह",
+      archives_text: "पाण्डुलिपि, भित्तेचित्र र सम्पदा कागजातहरू अन्वेषण गर्नुहोस्।",
+      map_heading: "इन्टरएक्टिभ नक्सा",
+      map_text: "गुम्बा स्थानहरू र नजिकका आकर्षणहरू पत्ता लगाउनुहोस्।",
+      calendar_heading: "सांस्कृतिक पात्रो",
+      calendar_text: "पर्व, पूजापाठ र गुम्बा कार्यक्रमहरूमा अपडेट रहनुहोस्।",
+      losar_title: "लोसर पर्व",
+      losar_date: "फेब्रुअरी २१, २०२६",
+      sagadawa_title: "सागा दावा",
+      sagadawa_date: "जुन ५, २०२६",
+      drupka_title: "द्रुपका तेशी",
+      drupka_date: "अगस्ट १०, २०२६",
+      vesak_title: "वेसाक (बुद्ध पूर्णिमा)",
+      vesak_date: "मे १२, २०२६",
+      magha_title: "माघ पूजा",
+      magha_date: "मार्च १४, २०२६",
+      asalha_title: "आषाढ पूजा (धम्म दिवस)",
+      asalha_date: "जुलाई ९, २०२६",
+      vassa_title: "वास्सा (वर्षा वास प्रारम्भ)",
+      vassa_date: "जुलाई १० – अक्टोबर ६, २०२६",
+      kathina_title: "कठिना समारोह",
+      kathina_date: "अक्टोबर २०, २०२६",
+      uposatha_title: "उपोशथ दिवस",
+      uposatha_date: "हरेक पूर्णिमा र अमावस्या",
+      booking_heading: "बुकिङ र सहभागिता",
+      booking_text: "मार्गनिर्देशित भ्रमण बुक गर्नुहोस् र गुम्बा गतिविधिहरूमा भाग लिनुहोस्।",
+      popup_title: "कार्यक्रम जानकारी",
+      popup_description: "यस पर्व र यसको महत्वबारे जान्नुहोस्।",
+      booking_form_title: "कार्यक्रम बुकिङ",
+      booking_name: "नाम",
+      booking_email: "इमेल",
+      booking_date: "मिति छान्नुहोस्",
+      booking_monastery: "गुम्बा छान्नुहोस्",
+      tour_booking_heading: "मार्गनिर्देशित भ्रमण बुकिङ",
+      tour_start: "सुरु मिति",
+      tour_end: "अन्त्य मिति",
+      tour_monastery: "गुम्बा छान्नुहोस्",
+      book_now: "अहिले बुक गर्नुहोस्",
+      footer: "© 2025 मोनास्ट्री360° | सिक्किमको सम्पदा सुरक्षित गर्दै"
+    },
+    ta:   {
+      title: "மோனாஸ்ட்ரி360°",
+      subtitle: "சிக்கிம் குகைகளின் டிஜிட்டல் பாரம்பரிய தளம்",
+      nav_tours: "சுற்றுலா",
+      nav_archives: "ஆவணங்கள்",
+      nav_map: "வரைபடம்",
+      nav_calendar: "நாள்காட்டி",
+      nav_booking: "முன்பதிவு",
+      tours_heading: "மெய்நிகர் சுற்றுலா",
+      tours_text: "360° பனோரமிக் காட்சிகளில் முழுமையாக அனுபவியுங்கள்.",
+      archives_heading: "டிஜிட்டல் ஆவணங்கள்",
+      archives_text: "கையெழுத்துகள், சுவற்றோவியங்கள் மற்றும் பாரம்பரிய ஆவணங்களை ஆராயுங்கள்.",
+      map_heading: "இணைய வரைபடம்",
+      map_text: "குகை இடங்களையும் அருகிலுள்ள ஈர்ப்புகளையும் கண்டறியுங்கள்.",
+      calendar_heading: "கலாச்சார நாள்காட்டி",
+      calendar_text: "திருவிழாக்கள், சடங்குகள் மற்றும் குகை நிகழ்வுகளை அறிந்து கொள்ளுங்கள்.",
+      losar_title: "லோசார் திருவிழா",
+      losar_date: "பிப்ரவரி 21, 2026",
+      sagadawa_title: "சாகா டாவா",
+      sagadawa_date: "ஜூன் 5, 2026",
+      drupka_title: "த்ருப்கா தேஷி",
+      drupka_date: "ஆகஸ்ட் 10, 2026",
+      vesak_title: "வெசாக் (புத்த பௌர்ணமி)",
+      vesak_date: "மே 12, 2026",
+      magha_title: "மகா பூஜை",
+      magha_date: "மார்ச் 14, 2026",
+      asalha_title: "ஆசாலா பூஜை (தம்ம தினம்)",
+      asalha_date: "ஜூலை 9, 2026",
+      vassa_title: "வஸ்ஸா (மழைக்கால வாஸம் தொடக்கம்)",
+      vassa_date: "ஜூலை 10 – அக்டோபர் 6, 2026",
+      kathina_title: "கதினா விழா",
+      kathina_date: "அக்டோபர் 20, 2026",
+      uposatha_title: "உபோசத தினங்கள்",
+      uposatha_date: "ஒவ்வொரு பௌர்ணமி & அமாவாசை",
+      booking_heading: "முன்பதிவு & பங்கேற்பு",
+      booking_text: "வழிகாட்டப்பட்ட சுற்றுலாவை முன்பதிவு செய்து குகை செயல்பாடுகளில் பங்கேற்கவும்.",
+      popup_title: "நிகழ்ச்சி தகவல்",
+      popup_description: "இந்த விழாவையும் அதன் முக்கியத்துவத்தையும் அறிந்து கொள்ளுங்கள்.",
+      booking_form_title: "நிகழ்ச்சி முன்பதிவு",
+      booking_name: "பெயர்",
+      booking_email: "மின்னஞ்சல்",
+      booking_date: "தேதியைத் தேர்வுசெய்க",
+      booking_monastery: "குகையைத் தேர்வுசெய்க",
+      tour_booking_heading: "வழிகாட்டப்பட்ட சுற்றுலா முன்பதிவு",
+      tour_start: "தொடக்க தேதி",
+      tour_end: "முடிவு தேதி",
+      tour_monastery: "குகையைத் தேர்வுசெய்க",
+      book_now: "இப்போது முன்பதிவு செய்யவும்",
+      footer: "© 2025 மோனாஸ்ட்ரி360° | சிக்கிம் பாரம்பரியத்தை பாதுகாக்கிறது"
+    }
+  };
+
+
+    const switcher = document.getElementById("languageSwitcher");
+    switcher.addEventListener("change", () => {
+      const lang = switcher.value;
+      document.querySelectorAll("[data-translate]").forEach(el => {
+        const key = el.getAttribute("data-translate");
+        el.textContent = translations[lang][key];
+      });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+  // Ensure the language switcher element exists
+  const languageSwitcher = document.getElementById('language-switcher');
+  if (languageSwitcher) {
+    languageSwitcher.addEventListener('change', (e) => {
+      currentLanguage = e.target.value;
+      applyTranslations(currentLanguage);
+
+      // Re-render popup in new language if open
+      const infoBox = document.getElementById('festival-info');
+      if (infoBox && infoBox.style.display !== 'none' && infoBox.dataset.current) {
+        showFestivalInfo(infoBox.dataset.current);
+      }
+    });
+  }
+});
+
+  </script>
+
+
+</body>
+</html>
